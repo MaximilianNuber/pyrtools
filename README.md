@@ -12,6 +12,14 @@ It provides:
 
 ## Installation
 
+For now, please install this package from GitHub:
+
+```bash
+pip install git+https://github.com/MaximilianNuber/pyrtools.git
+```
+
+The future installation from pip:
+
 ```bash
 pip install pyrtools
 ```
@@ -137,7 +145,7 @@ Wrap a fitted R model to:
 
 - inspect R Model slot names via `.r_slot_names()`
 - expose R Model slots as Python attributes  
-- call any R method via `.apply()`  
+- call any R method via `.apply()` 
 
 ```python
 from pyrtools import RModelWrapper
