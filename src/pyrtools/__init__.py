@@ -1,16 +1,21 @@
-import sys
+"""
+pyrtools: Python R tools—wrappers for rpy2 functions and R models.
 
-if sys.version_info[:2] >= (3, 8):
-    # TODO: Import directly (no need for conditional) when `python_requires = >= 3.8`
-    from importlib.metadata import PackageNotFoundError, version  # pragma: no cover
-else:
-    from importlib_metadata import PackageNotFoundError, version  # pragma: no cover
+Provides two main classes:
+
+- RFunctionWrapper: wrap any R function as a Python callable.
+- RModelWrapper: wrap a fitted R model object and apply R methods.
+"""
+
+import importlib.metadata
 
 try:
-    # Change here if project is renamed and does not equal the package name
-    dist_name = __name__
-    __version__ = version(dist_name)
-except PackageNotFoundError:  # pragma: no cover
-    __version__ = "unknown"
-finally:
-    del version, PackageNotFoundError
+    __version__ = importlib.metadata.version(__name__)
+except importlib.metadata.PackageNotFoundError:
+    # When running in editable/dev mode before installation
+    __version__ = "0.0.0+dev"
+
+from .function_wrapper import RFunctionWrapper
+from .model_wrapper import RModelWrapper
+
+__all__ = ["__version__", "RFunctionWrapper", "RModelWrapper"]
