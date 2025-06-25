@@ -3,6 +3,10 @@
 import numpy as np
 from typing import Any, Optional, Sequence
 from types import SimpleNamespace
+import pandas as pd
+import numpy as np
+
+from .r_env import lazy_import_r_env
 
 # from .r_env import lazy_import_r_env
 
