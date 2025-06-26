@@ -67,6 +67,8 @@ np.testing.assert_array_equal(r2py(r_mat), arr)
 # pandas DataFrame → R data.frame
 df = pd.DataFrame({"x":[1,2],"y":[3,4]})
 r_df = py2r(df)
+# because R automatically uses integer strings for rownames, pandas uses range(...):
+df.index = ["0", "1"] 
 pd.testing.assert_frame_equal(r2py(r_df), df)
 ```
 
@@ -228,6 +230,28 @@ print(result.table.head())
 ---
 
 ## 4. Type-Focused Wrappers: `RMatrix`, `RSparseMatrix`, `RList`
+
+UPDATE: Beyond these three R type classes I have added:`RInteger`, `RNumeric`, `RCharacter`, `RBool`, `RDataFrame` and `RFactor`.
+Please consider how these can replace the default _py_to_r and _r_to_py conversion functions, which exist in `lazy_import_r_env` as `py2r` and `r2py` and enable not only a mapping from one python type to one R-type, but enable many-to-many mappings for different input and output types.
+
+All R-Object classes, `RModelWrapper` now, too, inherit from an AbstractBaseClass enforcing the `.r_object` method to expose the actual sexp-wrapper or rpy2 class.
+Subsequently, after each conversion we can extract `x.r_object` and use it as input to RFunctionWrapper.
+
+Also, each of these classes exposes explicitely named (class-) methods to convert from and to a Python type.
+
+All R-Vector wrappers can convert to and from Python numpy.ndarray, and python list, with `.from_numpy(arr)` or `.from_list(l)`.
+
+RFactor can convert from list, where a Sequence for levels is set in addition to the python list, or from pandas.Categorical.
+
+RDataFrame is run through:
+```python
+df = ...
+with localconverter(default_converter + pandas2ri.converter):
+    cv = get_conversion()
+    cv.py2rpy(df)
+```
+
+Examples for these and better docstrings will follow soon.
 
 ### RMatrix
 

@@ -19,9 +19,15 @@ from .r_env import lazy_import_r_env
 
 from .function_wrapper import RFunctionWrapper
 from .model_wrapper import RModelWrapper
-from .matrix_wrapper import RMatrix
-from .matrix_wrapper import RSparseMatrix
-from .matrix_wrapper import RList
+from .r_types import RMatrix
+from .r_types import RSparseMatrix
+from .r_types import RList
+from .r_types import RDataFrame
+from .r_types import RInteger
+from .r_types import RNumeric
+from .r_types import RCharacter
+from .r_types import RLogical
+from .r_types import RFactor
 
 
 __all__ = [
@@ -31,6 +37,12 @@ __all__ = [
     "RModelWrapper", 
     "RMatrix", 
     "RSparseMatrix", 
-    "RList"
+    "RList",
+    "RDataFrame",
+    "RInteger",
+    "RNumeric",
+    "RCharacter",
+    "RLogical",
+    "RFactor"
 ]
 
