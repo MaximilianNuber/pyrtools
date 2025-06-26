@@ -39,14 +39,9 @@ jobs:
       - name: Install required R/Bioconductor packages
         run: |
           # install BiocManager if it isn’t already
-          Rscript -e 'if (!requireNamespace("BiocManager", quietly=TRUE)) \
-                         install.packages("BiocManager", repos="https://cloud.r-project.org")'
+          Rscript -e 'if (!requireNamespace("BiocManager", quietly=TRUE)) install.packages("BiocManager", repos="https://cloud.r-project.org")'
           # now install edgeR (and any other Bioconductor pkgs) non-interactively
-          Rscript -e 'BiocManager::install(
-                         c("edgeR", "Matrix"),
-                         ask=FALSE, 
-                         update=FALSE
-                       )'
+          Rscript -e 'BiocManager::install(c("edgeR","Matrix"), ask=FALSE, update=FALSE)'
 
       # ─── Existing Python setup ───────────────────────────────────────────────
       - name: Set up Python
