@@ -3,41 +3,6 @@
 requires = ["setuptools>=46.1.0", "setuptools_scm[toml]>=5"]
 build-backend = "setuptools.build_meta"
 
-[[project]
-name = "pyrtools"
-version = "0.1.0"              # <— you must have a version here
-description = "Convenience wrappers around rpy2. Enables interactive analysis using R workflows in Python, and offers additional utilities for creating Python tools with R inteRaction."
-readme = "README.md"
-requires-python = ">=3.8"
-license = { file = "LICENSE.txt" }
-
-# mandatory list, not a dict:
-dependencies = [
-  "numpy>=1.19",
-  "pandas>=1.1",
-  "scipy>=1.5",
-]
-
-[project.optional-dependencies]
-rpy2 = [
-  "rpy2>=3.5.0",
-  "anndata2ri>=0.2"    # for sparse‐matrix bridging
-]
-# The test suite needs pytest, numpy, pandas, etc.:
-tests = [
-  "pytest>=7.0",
-  "numpy>=1.19",
-  "pandas>=1.5",
-  "scipy>=1.8",
-  "seaborn>=0.12",
-  "rpy2>=3.5.0",
-  "anndata2ri>=1.0.0",
-]
-anndata = [
-  "anndata>=0.9",
-  "anndata2ri>=1.0.0",
-]
-
 [tool.setuptools_scm]
 # For smarter version schemes and other configuration options,
 # check out https://github.com/pypa/setuptools_scm
